@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blue"
+            android:textColor="@color/accent_blue"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bluetooth CBT AI Solver Bridge"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:layout_marginBottom="14dp" />
+
+        <!-- TAB BAR: STANDARD vs ALPHA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:orientation="horizontal"
+            android:background="#1C1C1E"
+            android:padding="3dp"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnTabStandard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="STANDARD"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/accent_blue"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/btnTabAlpha"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="ALPHA (DEEPSEEK)"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:backgroundTint="#2C2C2E"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+
+        <!-- CONTAINER 1: STANDARD PIPELINE -->
+        <LinearLayout
+            android:id="@+id/layoutStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- Phone Health Card FIRST: screen-off diagnosis must be seen, not scrolled to -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card_bg"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHONE HEALTH (SCREEN-OFF CHECK)"
+                android:textColor="@color/green"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvHealth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Health: unknown"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvBgSteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If link dies with screen off:\n1. Tap FIX below, accept all\n2. App info &gt; Battery usage &gt; Allow background activity ON\n3. Enable Auto-launch if shown\n4. Run the 2-min self-test"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnFixBackground"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Fix Background Running"
+                android:textSize="13sp"
+                android:backgroundTint="#333333"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnSelfTest"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="2-Min Screen-Off Self-Test"
+                android:textSize="13sp"
+                android:backgroundTint="#333333"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+
+        <!-- Connection Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card_bg"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status: Stopped"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:id="@+id/tvConnectedDevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Client: None"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvDataTransferred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transferred: 0 KB"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Solver Mode Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card_bg"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI SOLVER MODE"
+                android:textColor="@color/accent_blue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <RadioGroup
+                android:id="@+id/rgSolverMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rbMode1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mode 1: All at Once (1 Call, Fastest)"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp" />
+
+                <RadioButton
+                    android:id="@+id/rbMode2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mode 5: Balanced (5 Calls)"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/rbMode10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mode 10: Granular (10 Calls)"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tvModeDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Smart Routing: 1 text batch + up to 4 image/audio chunks rotating 5 keys."
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
+
+        <!-- Live Batch & Debug Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card_bg"
+            android:padding="14dp"
+            android:layout_marginBottom="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LIVE BATCH DEBUG &amp; STATUS"
+                android:textColor="@color/accent_blue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvBatchInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Batch: Idle (Waiting for transfer...)"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvItemDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items: 0 text, 0 image, 0 audio"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp" />
+
+            <ProgressBar
+                android:id="@+id/pbBatchProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="@color/accent_blue"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvSolverLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI Status: Ready"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvBatchSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Answers: None"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:maxLines="6" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnToggle"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Start Service"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/accent_blue"
+            android:textColor="#000000" />
+
+        <!-- AI Transparency Card (model/key per question + attempt log) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card_bg"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI TRANSPARENCY (MODEL / KEY / ERRORS)"
+                android:textColor="@color/accent_blue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvTransparency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No solve yet. (Tap to expand full log.)"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:fontFamily="monospace"
+                android:maxLines="14" />
+        </LinearLayout>
+
+        <!-- Batch History & Storage Management Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card_bg"
+            android:padding="14dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- Row 1: Title -->
+            <TextView
+                android:id="@+id/tvHistoryHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BATCH HISTORY &amp; STORAGE"
+                android:textColor="@color/accent_blue"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Row 2: Storage Summary (Left) + Action Buttons (Right) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvStorageInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Total: 0 batches (0 KB)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnRefreshBatches"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Refresh"
+                    android:textSize="11sp"
+                    android:backgroundTint="#333333"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnClearAllBatches"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Clear All"
+                    android:textSize="11sp"
+                    android:backgroundTint="#442222"
+                    android:textColor="@color/red" />
+            </LinearLayout>
+
+            <!-- Dynamic container for batch items -->
+            <LinearLayout
+                android:id="@+id/llBatchHistoryContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+        <!-- End of Batch History Card -->
+
+        </LinearLayout>
+        <!-- END OF CONTAINER 1 (STANDARD) -->
+
+        <!-- CONTAINER 2: ALPHA (DEEPSEEK VISION) -->
+        <LinearLayout
+            android:id="@+id/layoutAlpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Alpha Engine Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/card_bg"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ALPHA VISION SOLVER"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Model: @makers/deepseek-v4.1-flash via EdgeOne Gateway\nStrategy: 10 Chunks × 3 Questions • Full Screenshots • High Thinking"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tvAlphaStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No Alpha batch solved yet.\nPress '9' in Chrome to trigger Alpha solve."
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginBottom="12dp" />
+
+                <Button
+                    android:id="@+id/btnRefreshAlpha"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="Refresh Alpha Answers"
+                    android:textSize="13sp"
+                    android:backgroundTint="#333333"
+                    android:textColor="@color/accent_blue" />
+            </LinearLayout>
+
+            <!-- Alpha Answers List Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/card_bg"
+                android:padding="14dp"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QUESTION BREAKDOWN"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:id="@+id/llAlphaAnswersContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <!-- END OF CONTAINER 2 (ALPHA) -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saved in: /Android/data/com.bluebridge.app/files/batches/"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center" />
+
+    </LinearLayout>
+</ScrollView>

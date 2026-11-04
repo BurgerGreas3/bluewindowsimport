@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blue</string>
+    <string name="status_stopped">Service Stopped</string>
+    <string name="status_listening">Listening on Bluetooth RFCOMM...</string>
+    <string name="status_connected">Connected to Mac!</string>
+    <string name="btn_start">Start Service</string>
+    <string name="btn_stop">Stop Service</string>
+</resources>

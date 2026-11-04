@@ -1,0 +1,113 @@
+# ==============================================================================
+# Blue / BlueBridge Git Ignore Configuration
+# Strict policy: Source code & scripts ONLY. No credentials, logs, caches,
+# exams, questions, screenshots, or benchmark files.
+# ==============================================================================
+
+# Secrets & Credentials (NEVER COMMIT)
+.env
+.env.*
+!.env.example
+keys.json
+config.json
+credentials*.json
+tokens*.json
+service_account*.json
+*.keystore
+*.jks
+*.pem
+*.key
+*.secret
+
+# Exam Files & Web Captures (NEVER COMMIT)
+*.html
+*.htm
+*.mht
+*_files/
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.csv
+image/
+images/
+img/
+
+# Screenshots, Images & Media Caches (NEVER COMMIT)
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.wav
+*.mp3
+*.m4a
+
+# Runtime Batches, Answers & Screen Dumps (NEVER COMMIT)
+raw_batches/
+raw_sort_batch/
+batches/
+answers/
+alpha_batches/
+cbt_screens/
+ujian_siswa_screens/
+.trash/
+*_answers.json
+*answers*.json
+*_live.json
+
+# Logs & Temporary Files (NEVER COMMIT)
+*.log
+*.log.*
+*.trace
+*.tmp
+
+# Benchmark & Internal Test Reports
+*BENCHMARK*
+*benchmark*
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# macOS Compiled Binaries & Symbols
+bluebridge_send
+bluebridge_daemon
+bt_ctrl
+cbt_extract
+cbt_screens
+blue_notch
+*.dSYM/
+*.o
+*.obj
+
+# Android Build Artifacts
+android/obj/
+android/classes.dex
+android/base.apk
+android/aligned.apk
+android/unaligned.apk
+android/compiled_res.zip
+android/res_compiled/
+android/src/com/bluebridge/app/R.java
+*.apk
+*.idsig
+*.dex
+
+# OS & Editor Files
+.DS_Store
+.AppleDouble
+.LSOverride
+.kilo/
+.idea/
+.vscode/
+
+# Archives
+*.zip
+*.tar.gz
+*.tgz
