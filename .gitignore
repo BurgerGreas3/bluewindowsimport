@@ -1,113 +1,33 @@
-# ==============================================================================
-# Blue / BlueBridge Git Ignore Configuration
-# Strict policy: Source code & scripts ONLY. No credentials, logs, caches,
-# exams, questions, screenshots, or benchmark files.
-# ==============================================================================
-
-# Secrets & Credentials (NEVER COMMIT)
+﻿# Secrets & Personal Config
 .env
-.env.*
-!.env.example
-keys.json
 config.json
-credentials*.json
-tokens*.json
-service_account*.json
-*.keystore
-*.jks
-*.pem
-*.key
-*.secret
+keys.json
 
-# Exam Files & Web Captures (NEVER COMMIT)
-*.html
-*.htm
-*.mht
-*_files/
-*.pdf
-*.docx
-*.doc
-*.xlsx
-*.xls
-*.csv
-image/
-images/
-img/
-
-# Screenshots, Images & Media Caches (NEVER COMMIT)
-*.png
-*.jpg
-*.jpeg
-*.webp
-*.gif
-*.wav
-*.mp3
-*.m4a
-
-# Runtime Batches, Answers & Screen Dumps (NEVER COMMIT)
-raw_batches/
-raw_sort_batch/
-batches/
-answers/
-alpha_batches/
-cbt_screens/
-ujian_siswa_screens/
-.trash/
-*_answers.json
-*answers*.json
-*_live.json
-
-# Logs & Temporary Files (NEVER COMMIT)
-*.log
-*.log.*
-*.trace
-*.tmp
-
-# Benchmark & Internal Test Reports
-*BENCHMARK*
-*benchmark*
-
-# Python Cache
+# Python Cache & Virtual Environments
 __pycache__/
 *.py[cod]
-*$py.class
 .venv/
-env/
 venv/
 
-# macOS Compiled Binaries & Symbols
-bluebridge_send
-bluebridge_daemon
-bt_ctrl
-cbt_extract
-cbt_screens
-blue_notch
-*.dSYM/
-*.o
-*.obj
+# Runtime Batch & Exam Data
+.trash/
+raw_batches/*
+!raw_batches/.gitkeep
+raw_sort_batch/*
+!raw_sort_batch/.gitkeep
+batches/*
+!batches/.gitkeep
+answers/*
+!answers/.gitkeep
+latest_answers.json
+report_*.json
 
-# Android Build Artifacts
+# Android Build Intermediates & Signing Keys
 android/obj/
-android/classes.dex
 android/base.apk
 android/aligned.apk
-android/unaligned.apk
+android/classes.dex
 android/compiled_res.zip
-android/res_compiled/
+android/*.idsig
+android/debug.keystore
 android/src/com/bluebridge/app/R.java
-*.apk
-*.idsig
-*.dex
-
-# OS & Editor Files
-.DS_Store
-.AppleDouble
-.LSOverride
-.kilo/
-.idea/
-.vscode/
-
-# Archives
-*.zip
-*.tar.gz
-*.tgz
